@@ -65,7 +65,12 @@ DNS.1 = *.localhost
 DNS.2 = localhost
 ```
 
-Now generate the certificate:
+Now to generate the certificate. We do that by making a sh script.
+```bash
+touch generate.sh
+```
+
+Cut and paste the code below in the new script file:
 ```bash
 #!bin/bash
 
@@ -81,8 +86,15 @@ openssl req \
     -days 7300
 ```
 
+Run the script to generate the certificate files:
+```bash
+chmod +x generate.sh
+./generate.sh
+```
+
 Return back the the client directory and run:
 ```
+cd..
 npm install
 ```
 
