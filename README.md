@@ -94,7 +94,7 @@ chmod +x generate.sh
 
 You can safely delete generate.sh and openssl-custom.cnf leaving the certificate files:
 ```bash
-rm -rf generate.sh openssl.cnf
+rm -rf generate.sh openssl-custom.cnf
 ```
 
 Return back the the client directory and run:
