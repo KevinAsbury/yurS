@@ -8,6 +8,12 @@ namespace API.Extensions
 {
     public static class IdentityServiceExtensions
     {
+        /// <summary>
+        /// A services extension method to help cleanup the startup.cs file
+        /// </summary>
+        /// <param name="services"></param>
+        /// <param name="config"></param>
+        /// <returns>An IServiceCollection object</returns>
         public static IServiceCollection AddIdentityServices(this IServiceCollection services, IConfiguration config)
         {
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

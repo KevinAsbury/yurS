@@ -19,6 +19,11 @@ namespace API.Services
             _key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["TokenKey"]));
         }
 
+        /// <summary>
+        /// A JWT token provider.
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns>A JWE or JWS in 'Compact Serialization Format'.</returns>
         public string CreateToken(AppUser user)
         {
             var claims = new List<Claim> 
