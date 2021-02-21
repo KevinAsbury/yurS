@@ -15,8 +15,9 @@
           </ng-container>
         </ul>
 
-        <div class="dropdown" *ngIf="accountService.currentUser$ | async" dropdown>
-          <a class="dropdown-toggle text-light" dropdownToggle>Welcome user</a>
+        <div class="dropdown" *ngIf="(accountService.currentUser$ | async) as user" dropdown>
+          <!-- this is not working -->
+          <a class="dropdown-toggle text-light" dropdownToggle>Welcome {{user.username | titlecase}}</a>
           <div class="dropdown-menu mt-3" *dropdownMenu>
             <a class="dropdown-item">Edit Profile</a>
             <div class="dropdown-divider"></div>
@@ -36,7 +37,7 @@
             [(ngModel)]="model.password"
             class="form-control me-2" 
             type="password" 
-            placeholder="Passowrd">
+            placeholder="Password">
           <button class="btn btn-outline-success" type="submit">Login</button>
         </form>
     </div>
