@@ -13,10 +13,22 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void { }
 
+  /**
+   * Toggles registration mode
+   *
+   * @memberof HomeComponent
+   */
   registerToggle() {
     this.registerMode = !this.registerMode;
   }
 
+
+  /**
+   * Set registration mode to true or false
+   *
+   * @param {boolean} event
+   * @memberof HomeComponent
+   */
   cancelRegisterMode(event: boolean) {
     this.registerMode = event;
   }

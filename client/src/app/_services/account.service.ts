@@ -15,6 +15,13 @@ export class AccountService {
   private currentUserSource = new ReplaySubject<User>(1);
   currentUser$ = this.currentUserSource.asObservable();
 
+  /**
+   * Connect to the API and login
+   *
+   * @param {*} model The user login data
+   * @return {*} The response in a JSON format Observerable
+   * @memberof AccountService
+   */
   login(model: any) {
     return this.http.post(this.baseUrl + 'account/login', model).pipe(
       map((response: User) => {
@@ -27,6 +34,13 @@ export class AccountService {
     );
   }
 
+  /**
+   * Connect to the API and register a new user
+   *
+   * @param {*} model The user registration data
+   * @return {*} User as a JSON response Observable
+   * @memberof AccountService
+   */
   register(model: any) {
     return this.http.post(this.baseUrl + 'account/register', model).pipe(
       map((user: User) => {
@@ -38,10 +52,21 @@ export class AccountService {
     );
   }
 
+  /**
+   * Add the current user to the ReplaySubject.
+   *
+   * @param {User} user
+   * @memberof AccountService
+   */
   setCurrentUser(user: User) {
     this.currentUserSource.next(user);
   }
 
+  /**
+   * Logout by removing user from local storage and setting the ReplaySubject to null.
+   *
+   * @memberof AccountService
+   */
   logout() {
     localStorage.removeItem('user');
     this.currentUserSource.next(null);

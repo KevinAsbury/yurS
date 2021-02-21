@@ -14,7 +14,12 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  
+  /**
+   * Registers a new user using the AccountService
+   *
+   * @memberof RegisterComponent
+   */
   register() {
     this.accountService.register(this.model).subscribe(response => {
       console.log(response);
@@ -24,6 +29,11 @@ export class RegisterComponent implements OnInit {
     })
   }
 
+  /**
+   * Emits a registration cancelation when cancel button is clicked
+   *
+   * @memberof RegisterComponent
+   */
   cancel() {
     this.cancelRegister.emit(false);
   }

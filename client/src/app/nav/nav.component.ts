@@ -17,6 +17,11 @@ export class NavComponent implements OnInit {
 
   }
 
+  /**
+   * Login through the AccountService
+   *
+   * @memberof NavComponent
+   */
   login() {
     this.accountService.login(this.model).subscribe(response => {
       console.log(response);
@@ -25,6 +30,11 @@ export class NavComponent implements OnInit {
     console.log(error));
   }
 
+  /**
+   * Logout through the AccountService
+   *
+   * @memberof NavComponent
+   */
   logout() {
     this.accountService.logout();
   }
