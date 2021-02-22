@@ -12,6 +12,13 @@ export class AuthGuard implements CanActivate {
 
   constructor(private accountService: AccountService, private toastr: ToastrService) { }
 
+
+  /**
+   * Determines if a user is authorized to access path
+   *
+   * @return {*}  {Observable<boolean>}
+   * @memberof AuthGuard
+   */
   canActivate(): Observable<boolean> {
     return this.accountService.currentUser$.pipe(
       map(user => {
