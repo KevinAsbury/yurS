@@ -1,8 +1,10 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using API.Data;
+using API.DTOs;
 using API.Entities;
 using API.Interfaces;
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -14,8 +16,10 @@ namespace API.Controllers
     {
         // The database context
         private readonly IUserRepository _repo;
-        public UsersController(IUserRepository repo)
+        private readonly IMapper _mapper;
+        public UsersController(IUserRepository repo, IMapper mapper)
         {
+            _mapper = mapper;
             _repo = repo;
         }
 
@@ -26,9 +30,10 @@ namespace API.Controllers
         /// </summary>
         /// <returns>List of users</returns>
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<AppUser>>> GetUsers()
+        public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers()
         {
-            return Ok(await _repo.GetUsersAsync());
+            var users = await _repo.GetMembersAsync();
+            return Ok(users);
         }
 
         /// <summary>
@@ -39,9 +44,9 @@ namespace API.Controllers
         /// <param name="username"></param>
         /// <returns>A singlue user</returns>        
         [HttpGet("{username}")]
-        public async Task<ActionResult<AppUser>> GetUser(string username)
+        public async Task<ActionResult<MemberDto>> GetUser(string username)
         {
-            return await _repo.GetByUsernameAsync(username);
+            return await _repo.GetMemberAsync(username);
         }
     }
 }
