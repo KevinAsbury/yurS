@@ -3,8 +3,8 @@
         <h1>Your Profile</h1>
     </div>
     <div class="col-8">
-        <div class="alert alert-info">
-            <p><strong>Information:</strong> you have made changes. Any unsaved changes will be lost.</p>
+        <div class="alert alert-info" *ngIf="editForm.dirty">
+            <strong>You have made changes. Any unsaved changes will be lost.</strong>
         </div>
     </div>
     <div class="col-4">
@@ -34,9 +34,9 @@
                     {{member.created}}
                 </div>
             </div>
-            <div class="card-footer">
+            <div class="card-footer" *ngIf="editForm.dirty">
                 <div class="btn-group d-flex">
-                    <button class="btn btn-success btn-block">Save Changes</button>
+                    <button form="editForm" class="btn btn-success btn-block">Save Changes</button>
                 </div>
             </div>
         </div>
@@ -44,7 +44,7 @@
     <div class="col-8">
         <tabset class="member-tabset">
             <tab heading="About">
-                <form action="">
+                <form #editForm="ngForm" id="editForm" (ngSubmit)="updateMember()">
                     <div class = "form-inline mt-1">
                         <label for="genderIdentity">Gender Identity: </label>
                         <input [(ngModel)]="member.gender" type="text" name="genderIdentity" 
