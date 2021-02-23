@@ -25,7 +25,18 @@
                     <strong>Profile Created:</strong>
                     {{member.created}}
                 </div>
-                <p></p>
+            </div>
+            <div class="card-footer">
+                <div class="btn-group d-flex">
+                    <button class="btn btn-primary">Like</button>
+                    <button class="btn btn-success">Message</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-8">
+        <tabset class="member-tabset">
+            <tab heading="About">
                 <div>
                     <strong>Gender Identity:</strong>
                     {{member.gender | titlecase}}
@@ -40,27 +51,26 @@
                 </div>
                 <p></p>
                 <div>
-                    <strong>Interests:</strong>
+                    <h4>Interests:</h4>
                     {{member.interests}}
                 </div>
                 <p></p>
                 <div>
-                <strong>Looking For:</strong>
+                <h4>Looking For:</h4>
                     {{member.lookingFor}}
                 </div>
                 <p></p>
                 <div>
-                    <strong>Introduction:</strong>
+                    <h4>Introduction:</h4>
                     {{member.introduction}}
                 </div>
-
-            </div>
-            <div class="card-footer">
-                <div class="btn-group d-flex">
-                    <button class="btn btn-primary">Like</button>
-                    <button class="btn btn-success">Message</button>
-                </div>
-            </div>
-        </div>
+            </tab>
+            <tab heading="Photos">
+                <p>Photos will go here</p>
+            </tab>
+            <tab heading="Messages">
+                <p>Messages will go here</p>
+            </tab>
+        </tabset>
     </div>
 </div>
