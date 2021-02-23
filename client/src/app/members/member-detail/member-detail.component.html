@@ -1,1 +1,66 @@
-<p>member-detail works!</p>
+<div class="row" *ngIf="member">
+    <div class="col-4">
+        <div class="card">
+            <img src="{{member.photoUrl || './assets/user.png'}}" alt="{{member.alias}}" 
+                class="card-img-top img-thumbnail">
+            <div class="card-body">
+                <div>
+                    <strong>Location:</strong>
+                    {{member.city}}, {{member.country}}
+                </div>
+                <div *ngIf="member.displayAge == true">
+                    <strong>Relationship Status:</strong>
+                    {{member.relationshipStatus | titlecase}}
+                </div>
+                <div *ngIf="member.displayAge == true">
+                    <strong>Age:</strong>
+                    {{member.age}}
+                </div>
+                <p></p>
+                <div>
+                    <strong>Last Active:</strong>
+                    {{member.lastActive}}
+                </div>
+                <div>
+                    <strong>Profile Created:</strong>
+                    {{member.created}}
+                </div>
+                <p></p>
+                <div>
+                    <strong>Gender Identity:</strong>
+                    {{member.gender | titlecase}}
+                </div>
+                <div>
+                    <strong>Sexual Orientation:</strong>
+                    {{member.orientation | titlecase}}
+                </div>
+                <div>
+                    <strong>Prounouns:</strong>
+                    {{member.pronouns}}
+                </div>
+                <p></p>
+                <div>
+                    <strong>Interests:</strong>
+                    {{member.interests}}
+                </div>
+                <p></p>
+                <div>
+                <strong>Looking For:</strong>
+                    {{member.lookingFor}}
+                </div>
+                <p></p>
+                <div>
+                    <strong>Introduction:</strong>
+                    {{member.introduction}}
+                </div>
+
+            </div>
+            <div class="card-footer">
+                <div class="btn-group d-flex">
+                    <button class="btn btn-primary">Like</button>
+                    <button class="btn btn-success">Message</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
