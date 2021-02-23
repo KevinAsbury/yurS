@@ -33,6 +33,13 @@ export class MemberDetailComponent implements OnInit {
     ]
   }
 
+
+  /**
+   *  Returns an array of images for a photo gallery
+   *
+   * @return {*}  {NgxGalleryImage[]}
+   * @memberof MemberDetailComponent
+   */
   getImages(): NgxGalleryImage[] {
     const imageUrls = []
     for (const photo of this.member.photos) {
@@ -46,6 +53,11 @@ export class MemberDetailComponent implements OnInit {
     return imageUrls
   }
 
+  /**
+   * Subscribes to the member service, sets the member property, loads member's photo gallery
+   *
+   * @memberof MemberDetailComponent
+   */
   loadMember() {
     this.memberService.getMember(this.route.snapshot.paramMap.get('username')).subscribe(member => {
       this.member = member;

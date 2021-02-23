@@ -11,10 +11,24 @@ export class MembersService {
 
   constructor(private http: HttpClient) { }
 
+
+  /**
+   * Returns a user from the API
+   *
+   * @return {*} 
+   * @memberof MembersService
+   */
   getMembers() {
     return this.http.get<Member[]>(this.baseUrl + 'users')
   }
-
+  
+  /**
+   * Returns a list of users from the API
+   *
+   * @param {string} username
+   * @return {*} 
+   * @memberof MembersService
+   */
   getMember(username: string) {
     return this.http.get<Member>(this.baseUrl + 'users/' + username)
   }

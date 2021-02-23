@@ -16,6 +16,11 @@ export class MemberListComponent implements OnInit {
     this.loadMembers();
   }
 
+  /**
+   * Subscribe to the memberservice and set the local members property
+   *
+   * @memberof MemberListComponent
+   */
   loadMembers() {
     this.memberService.getMembers().subscribe(members => {
       this.members = members;

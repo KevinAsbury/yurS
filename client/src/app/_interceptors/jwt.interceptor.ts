@@ -10,6 +10,14 @@ import { AccountService } from '../_services/account.service'
 import { User } from '../_models/user'
 import { take } from 'rxjs/operators'
 
+
+/**
+ * Intercepts the request header and inserts an Authorization token
+ *
+ * @export
+ * @class JwtInterceptor
+ * @implements {HttpInterceptor}
+ */
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
 
