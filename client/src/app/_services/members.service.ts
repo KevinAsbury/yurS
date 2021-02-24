@@ -15,18 +15,18 @@ export class MembersService {
   /**
    * Returns a user from the API
    *
-   * @return {*} 
+   * @return {*}
    * @memberof MembersService
    */
   getMembers() {
     return this.http.get<Member[]>(this.baseUrl + 'users')
   }
-  
+
   /**
    * Returns a list of users from the API
    *
    * @param {string} username
-   * @return {*} 
+   * @return {*}
    * @memberof MembersService
    */
   getMember(username: string) {
@@ -37,7 +37,7 @@ export class MembersService {
    * Updates the API with new user information
    *
    * @param {Member} member
-   * @return {*} 
+   * @return {*}
    * @memberof MembersService
    */
   updateMember(member: Member) {

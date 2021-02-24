@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core'
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser'
 
 import { AppRoutingModule } from './app-routing.module'
@@ -16,15 +16,16 @@ import { MemberListComponent } from './members/member-list/member-list.component
 import { MemberDetailComponent } from './members/member-detail/member-detail.component'
 import { ListsComponent } from './lists/lists.component'
 import { MessagesComponent } from './messages/messages.component'
-import { ToastrModule } from 'ngx-toastr'
 import { SharedModule } from './_modules/shared.module'
 import { TestErrorsComponent } from './errors/test-errors/test-errors.component'
-import { ErrorInterceptor } from './_interceptors/error.interceptor';
-import { NotFoundComponent } from './errors/not-found/not-found.component';
-import { ServerErrorComponent } from './errors/server-error/server-error.component';
+import { ErrorInterceptor } from './_interceptors/error.interceptor'
+import { NotFoundComponent } from './errors/not-found/not-found.component'
+import { ServerErrorComponent } from './errors/server-error/server-error.component'
 import { MemberCardComponent } from './members/member-card/member-card.component'
-import { JwtInterceptor } from './_interceptors/jwt.interceptor';
+import { JwtInterceptor } from './_interceptors/jwt.interceptor'
 import { MemberEditComponent } from './members/member-edit/member-edit.component'
+import { NgxSpinnerModule } from 'ngx-spinner'
+import { LoadingInterceptor } from './_interceptors/loading.interceptor'
 
 @NgModule({
   declarations: [
@@ -45,14 +46,17 @@ import { MemberEditComponent } from './members/member-edit/member-edit.component
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule, 
+    HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    SharedModule
+    SharedModule,
+    NgxSpinnerModule
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

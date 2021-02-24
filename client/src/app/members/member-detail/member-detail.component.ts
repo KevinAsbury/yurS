@@ -12,14 +12,14 @@ import {NgxGalleryAnimation} from '@kolkov/ngx-gallery'
   styleUrls: ['./member-detail.component.css']
 })
 export class MemberDetailComponent implements OnInit {
-  member: Member;
-  galleryOptions: NgxGalleryOptions[];
-  galleryImages: NgxGalleryImage[];
+  member: Member
+  galleryOptions: NgxGalleryOptions[]
+  galleryImages: NgxGalleryImage[]
 
   constructor(private memberService: MembersService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.loadMember();
+    this.loadMember()
 
     this.galleryOptions = [
       {
@@ -60,7 +60,7 @@ export class MemberDetailComponent implements OnInit {
    */
   loadMember() {
     this.memberService.getMember(this.route.snapshot.paramMap.get('username')).subscribe(member => {
-      this.member = member;
+      this.member = member
       this.galleryImages = this.getImages()
     })
   }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { Member } from 'src/app/_models/member';
+import { Member } from 'src/app/_models/member'
 import { MembersService } from 'src/app/_services/members.service'
 
 @Component({
@@ -13,17 +13,16 @@ export class MemberListComponent implements OnInit {
   constructor(private memberService: MembersService) { }
 
   ngOnInit(): void {
-    this.loadMembers();
+    this.loadMembers()
   }
 
   /**
    * Subscribe to the memberservice and set the local members property
    *
-   * @memberof MemberListComponent
    */
   loadMembers() {
     this.memberService.getMembers().subscribe(members => {
-      this.members = members;
+      this.members = members
     })
   }
 }

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core'
 import {
   HttpRequest,
   HttpHandler,
@@ -36,6 +36,6 @@ export class JwtInterceptor implements HttpInterceptor {
       })
     }
 
-    return next.handle(request);
+    return next.handle(request)
   }
 }
