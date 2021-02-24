@@ -4,6 +4,7 @@ yurS is an ASP.Net and Angular library for dealing with proper capitalization an
 
 ## Installation
 
+### API
 To get the API running create an appsettings.json file in the API root folder:
 ```bash
 cd API
@@ -13,32 +14,32 @@ touch appsettings.json
 Cut and paste this in to the file:
 ```json
 {
-  "Logging": {
-    "LogLevel": {
-      "Default": "Information",
-      "Microsoft": "Warning",
-      "Microsoft.Hosting.Lifetime": "Information"
-    }
-  },
-  "AllowedHosts": "*"
-}
+    "Logging": {
+      "LogLevel": {
+        "Default": "Information",
+        "Microsoft": "Warning",
+        "Microsoft.Hosting.Lifetime": "Information"
+      }
+    },
+    "CloudinarySettings": {
+        "CloudName": "YOUR CLOUDINARY.COM NAME",
+        "ApiKey": "YOUR CLOUDINARY.COM KEY",
+        "ApiSecret": "YOUR CLOUDINARY.COM SECRET"
+    },
+    "AllowedHosts": "*"
+  }
 ```
+If you haven't done so then head to [Cloudinary](https://cloudinary.com) and set up a free-tier account (no credit card required). After verifying your email address and logging in you will see your CloudName, ApiKey, and ApiSecret on the login panel. Cut and paste this information into the appsettings.json and save the file. The app uses Cloudinary to store uploaded images.
 
-Now we need to create the database and run the migrations:
-```bash
-dotnet ef database update
-```
-That should produce a database file named yurs.db in the API root folder.
-
-
-To get angular running you will need to create a folder named ssl and copy your certificate files into it.
+---
+### Angular Client
+First Angular needs SSL certificates. You will need to create a folder named ssl:
 
 ```bash
 cd client
 mkdir ssl
 cd ssl
 ```
-
 Cut and paste the below into a new file named openssl-custom.cnf :
 ```
 [req]
@@ -65,7 +66,7 @@ DNS.1 = *.localhost
 DNS.2 = localhost
 ```
 
-Now to generate the certificate. We do that by making a sh script.
+Save the file. Now to generate the certificate. We do that by making a sh script.
 ```bash
 touch generate.sh
 ```
@@ -92,17 +93,17 @@ chmod +x generate.sh
 ./generate.sh
 ```
 
-You can safely delete generate.sh and openssl-custom.cnf leaving the certificate files:
+You can safely delete generate.sh and openssl-custom.cnf:
 ```bash
 rm -rf generate.sh openssl-custom.cnf
 ```
 
-Return back the the client directory and run:
+Now you should have all your SSL files generated. Return back the the client directory and run:
 ```
-cd..
+cd ..
 npm install
 ```
-
+---
 ## Usage
 Use dotnet run to start the API:
 ```bash
