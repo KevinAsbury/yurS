@@ -2,7 +2,11 @@
     <h2 class="text-center text-primary">Sign up</h2>
     <hr>
     <div class="form-group">
-        <input type="text" class="form-control" formControlName='username' placeholder="Username">
+        <input 
+        [class.is-invalid]='registerForm.get("username").errors
+            && registerForm.get("username").touched'
+        type="text" class="form-control" formControlName='username' placeholder="Username">
+        <div class="invalid-feedback"></div>
     </div>
     <div class="form-group">
         <input type="password" class="form-control" formControlName='password' placeholder="Password">
