@@ -3,7 +3,7 @@ import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpInterceptor
+  HttpInterceptor,
 } from '@angular/common/http'
 import { Observable, throwError } from 'rxjs'
 import { NavigationExtras, Router } from '@angular/router'
@@ -13,9 +13,7 @@ import { TestErrorsComponent } from '../errors/test-errors/test-errors.component
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
-
   constructor(private router: Router, private toastr: ToastrService) {}
-
 
   /**
    * Intercept errors and perform specific tasks based on error status
@@ -25,9 +23,12 @@ export class ErrorInterceptor implements HttpInterceptor {
    * @return {*}  {Observable<HttpEvent<unknown>>}
    * @memberof ErrorInterceptor
    */
-  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+  intercept(
+    request: HttpRequest<unknown>,
+    next: HttpHandler,
+  ): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(
-      catchError(error => {
+      catchError((error) => {
         if (error) {
           switch (error.status) {
             case 400:
@@ -52,7 +53,9 @@ export class ErrorInterceptor implements HttpInterceptor {
               this.router.navigateByUrl('/not-found')
               break
             case 500:
-              const navigationExtras: NavigationExtras = { state: { error: error.error } }
+              const navigationExtras: NavigationExtras = {
+                state: { error: error.error },
+              }
               this.router.navigateByUrl('/server-error', navigationExtras)
               break
             default:
@@ -62,7 +65,7 @@ export class ErrorInterceptor implements HttpInterceptor {
           }
         }
         return throwError(error)
-      })
+      }),
     )
   }
 }

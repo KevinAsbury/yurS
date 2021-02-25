@@ -12,18 +12,18 @@ import { FileUploadModule } from 'ng2-file-upload'
     CommonModule,
     BsDropdownModule.forRoot(),
     ToastrModule.forRoot({
-      positionClass: 'toast-bottom-right'
+      positionClass: 'toast-bottom-right',
     }),
     TabsModule.forRoot(),
     NgxGalleryModule,
-    FileUploadModule
+    FileUploadModule,
   ],
   exports: [
     BsDropdownModule,
     ToastrModule,
     TabsModule,
     NgxGalleryModule,
-    FileUploadModule
-  ]
+    FileUploadModule,
+  ],
 })
-export class SharedModule { }
+export class SharedModule {}
