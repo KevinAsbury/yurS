@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -56,9 +57,18 @@ namespace API.Data
         {
             var query = _context.Users.AsQueryable();
 
+            // Filter out current user
             query = query.Where(u => u.UserName != userParams.CurrentUsername);
+
+            // Show all genders with no filter otherwise show filter
             if (!string.IsNullOrEmpty(userParams.Gender))
                 query = query.Where(u => u.Gender == userParams.Gender);
+
+            // Filter by min max date of birth
+            var minDob = DateTime.Today.AddYears(-userParams.MaxAge - 1);
+            var maxDob = DateTime.Today.AddYears(-userParams.MinAge);
+
+            query = query.Where(u => u.DateOfBirth >= minDob && u.DateOfBirth <= maxDob);
 
             return await PagedList<MemberDto>.CreateAsync(
                 query.ProjectTo<MemberDto>(_mapper.ConfigurationProvider).AsNoTracking(), 

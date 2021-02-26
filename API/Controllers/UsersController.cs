@@ -39,10 +39,10 @@ namespace API.Controllers
             var user = await _repo.GetByUsernameAsync(User.GetUserName());
             userParams.CurrentUsername = user.UserName;
 
-            if(string.IsNullOrEmpty(userParams.Gender))
-            {
-                // userParams.Gender = user.Gender == "male" ? "female" : "male";
-            }
+            // if(string.IsNullOrEmpty(userParams.Gender))
+            // {
+            //     userParams.Gender = user.Gender == "male" ? "female" : "male";
+            // }
 
             var users = await _repo.GetMembersAsync(userParams);
 
