@@ -23,7 +23,8 @@ import { ErrorInterceptor } from './_interceptors/error.interceptor'
 import { JwtInterceptor } from './_interceptors/jwt.interceptor'
 import { LoadingInterceptor } from './_interceptors/loading.interceptor'
 import { SharedModule } from './_modules/shared.module';
-import { TextInputComponent } from './_forms/text-input/text-input.component'
+import { TextInputComponent } from './_forms/text-input/text-input.component';
+import { DateInputComponent } from './_forms/date-input/date-input.component'
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { TextInputComponent } from './_forms/text-input/text-input.component'
     MemberEditComponent,
     PhotoEditorComponent,
     TextInputComponent,
+    DateInputComponent,
   ],
   imports: [
     BrowserModule,
