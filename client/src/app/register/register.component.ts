@@ -43,7 +43,7 @@ export class RegisterComponent implements OnInit {
       country: ['', Validators.required],
       gender: ['male', Validators.required],
       orientation: ['straight', Validators.required],
-      pronouns: ['', Validators.required],
+      pronouns: ['he/him', Validators.required],
       relationshipStatus: ['single', Validators.required],
       alias: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(20)]],
