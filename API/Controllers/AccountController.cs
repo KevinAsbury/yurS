@@ -60,7 +60,8 @@ namespace API.Controllers
                 UserName = user.UserName,
                 Token = _tokenService.CreateToken(user),
                 Alias = user.Alias,
-                Gender = user.Gender
+                Gender = user.Gender,
+                Orientation = user.Orientation
             };
         }
 
@@ -100,7 +101,8 @@ namespace API.Controllers
                 Token = _tokenService.CreateToken(user),
                 PhotoUrl = user.Photos.FirstOrDefault(x => x.IsMain)?.Url,
                 Alias = user.Alias,
-                Gender = user.Gender
+                Gender = user.Gender,
+                Orientation = user.Orientation
             };
         }
 

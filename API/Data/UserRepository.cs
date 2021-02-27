@@ -63,6 +63,13 @@ namespace API.Data
             // Show all genders with no filter otherwise show filter
             if (!string.IsNullOrEmpty(userParams.Gender))
                 query = query.Where(u => u.Gender == userParams.Gender);
+            
+            // Filter on orientation
+            if (!string.IsNullOrEmpty(userParams.Orientation))
+            {
+                // append bisexuals no matter if use picks gay or straight
+                query = query.Where(u => u.Orientation == userParams.Orientation || u.Orientation == "bisexual");
+            }
 
             // Filter by min max date of birth
             var minDob = DateTime.Today.AddYears(-userParams.MaxAge - 1);

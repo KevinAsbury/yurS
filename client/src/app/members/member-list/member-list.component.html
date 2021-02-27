@@ -15,10 +15,19 @@
     </div>
     
     <div class="form-group px-2">
-      <label>Show: </label>
+      <label>Gender: </label>
       <select name="gender" style="width: 130px" [(ngModel)]="userParams.gender" class="form-control ml-1">
         <option *ngFor="let gender of genderList" [value]="gender.value">
           {{gender.display}}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-group px-2">
+      <label>Orientation: </label>
+      <select name="orientation" style="width: 130px" [(ngModel)]="userParams.orientation" class="form-control ml-1">
+        <option *ngFor="let orientation of orientationList" [value]="orientation.value">
+          {{orientation.display}}
         </option>
       </select>
     </div>

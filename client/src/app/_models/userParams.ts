@@ -7,9 +7,32 @@ export class UserParams {
     pageNumber = 1
     pageSize = 5
     orderBy = 'lastActive'
+    orientation: string
 
     constructor(user: User) {
         this.gender = ''
-        // this.gender = user.gender === 'female' ? 'male' : 'female'
+        this.orientation = ''
+
+        // Check users orientation to determine preset filters
+        if (user.orientation == 'gay') {
+            this.orientation = user.orientation
+            if (user.gender == 'male') {
+                this.gender = 'male'
+            }
+            if (user.gender == 'female') {
+                this.gender = 'female'
+            }
+        }
+
+        if (user.orientation == 'straight') {
+            this.orientation = user.orientation
+            if (user.gender == 'male') {
+                this.gender = 'female'
+            }
+            if (user.gender == 'female') {
+                this.gender = 'male'
+            }
+        }
+        
     }
 }
