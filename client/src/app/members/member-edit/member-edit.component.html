@@ -27,11 +27,11 @@
                 <p></p>
                 <div>
                     <strong>Last Active:</strong>
-                    {{member.lastActive}}
+                    {{member.lastActive | timeago}}
                 </div>
                 <div>
                     <strong>Profile Created:</strong>
-                    {{member.created}}
+                    {{member.created | date: 'longDate'}}
                 </div>
             </div>
             <div class="card-footer" *ngIf="editForm.dirty">
