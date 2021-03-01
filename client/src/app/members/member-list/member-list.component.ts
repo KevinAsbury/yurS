@@ -18,8 +18,16 @@ export class MemberListComponent implements OnInit {
   pagination: Pagination
   userParams: UserParams
   user: User
-  genderList = [{ value: '', display: 'All' }, { value: 'male', display: 'Males' }, { value: 'female', display: 'Female' }]
-  orientationList =[{ value: '', display: 'All' }, { value: 'gay', display: 'Gay' }, { value: 'straight', display: 'Straight' }]
+  genderList = [
+    { value: '', display: 'All' },
+    { value: 'male', display: 'Males' },
+    { value: 'female', display: 'Females' }
+  ]
+  orientationList = [
+    { value: '', display: 'All' },
+    { value: 'gay', display: 'Gay' },
+    { value: 'straight', display: 'Straight' }
+  ]
 
   constructor(
     private memberService: MembersService,

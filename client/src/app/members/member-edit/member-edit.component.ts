@@ -16,6 +16,31 @@ export class MemberEditComponent implements OnInit {
   @ViewChild('editForm') editForm: NgForm
   member: Member
   user: User
+  genderList = [
+    { value: 'male', display: 'Male' },
+    { value: 'female', display: 'Female' },
+    { value: '', display: 'Expansive' },
+  ]
+  orientationList = [
+    { value: 'straight', display: 'Straight' },
+    { value: 'bisexual', display: 'Bisexual' },
+    { value: 'gay', display: 'Gay' },
+    { value: '', display: 'Expansive' }
+  ]
+  relationshipStatusList = [
+    { value: 'single', display: 'Single' },
+    { value: 'dating', display: 'Dating' },
+    { value: 'open', display: 'Open' },
+    { value: 'poly', display: 'Polyamorous' },
+    { value: 'complicated', display: "It's complicated" },
+    { value: 'married', display: "Married" },
+  ]
+  pronounsList = [
+    { value: 'he/him', display: 'He/Him' },
+    { value: 'she/her', display: 'She/Her' },
+    { value: 'they/them', display: 'They/Them' },
+    { value: '', display: 'Expansive' }
+  ]
   @HostListener('window:beforeunload', ['$event']) unloadNotification(
     $event: any,
   ) {

@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http'
 import { utf8Encode } from '@angular/compiler/src/util'
 import { Injectable } from '@angular/core'
-import { of } from 'rxjs'
+import { of, pipe } from 'rxjs'
 import { map } from 'rxjs/operators'
 import { environment } from 'src/environments/environment'
 import { Member } from '../_models/member'
@@ -14,10 +14,17 @@ import { UserParams } from '../_models/userParams'
 export class MembersService {
   baseUrl = environment.apiUrl
   members: Member[] = []
+  memberCache = new Map()
 
   constructor(private http: HttpClient) {}
 
   getMembers(userParams: UserParams) {
+    var response = this.memberCache.get(Object.values(userParams).join('-'))
+
+    if (response) {
+      return of(response)
+    }
+
     let params = this.getPaginationHeaders(userParams.pageNumber, userParams.pageSize)
 
     params = params.append('minAge', userParams.minAge.toString())
@@ -27,6 +34,10 @@ export class MembersService {
     params = params.append('orderBy', userParams.orderBy.toString())
 
     return this.getPaginatedResult<Member[]>(this.baseUrl, params)
+      .pipe(map(response => {
+        this.memberCache.set(Object.values(userParams).join('-'), response)
+        return response
+      }))
   }
 
   private getPaginatedResult<T>(url, params: HttpParams) {
@@ -59,8 +70,16 @@ export class MembersService {
    * @memberof MembersService
    */
   getMember(username: string) {
-    const member = this.members.find((x) => x.userName === username)
-    if (member !== undefined) return of(member)
+    // const member = this.members.find((x) => x.userName === username)
+    // if (member !== undefined) return of(member)
+    const member = [...this.memberCache.values()]
+      .reduce((arr, elem) => arr.concat(elem.result), [])
+      .find((member: Member) => member.userName === username)
+    
+    if (member) {
+      return of(member)
+    }
+    
     return this.http.get<Member>(this.baseUrl + 'users/' + username)
   }
 

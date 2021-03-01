@@ -45,22 +45,58 @@
         <tabset class="member-tabset">
             <tab heading="About">
                 <form #editForm="ngForm" id="editForm" (ngSubmit)="updateMember()">
-                    <div class = "form-inline mt-1">
-                        <label for="genderIdentity">Gender Identity: </label>
-                        <input [(ngModel)]="member.gender" type="text" name="genderIdentity" 
-                        class="form-control mx-2" value="{{member.gender | titlecase}}">
+
+                    <div  class = "form-inline mt-1">
+                        <label for="genderIdentity">Gender:</label>
+                        <select [(ngModel)]="member.gender" name="genderIdentity" style="width: 130px" class="custom-select ml-1">
+                            <option *ngFor="let gender of genderList" [value]="gender.value">
+                                {{gender.display}}
+                            </option>
+                        </select>
+                            <input *ngIf="
+                                (member.gender !== 'male') && 
+                                (member.gender !== 'female')" 
+                            [(ngModel)]="member.gender" type="text" name="genderIdentity" 
+                            class="form-control mx-2" value="{{member.gender | titlecase}}">
+                    </div>
+
+                    <div  class = "form-inline mt-1">
+                        <label for="sexualOrientation">Orientation:</label>
+                        <select [(ngModel)]="member.orientation" name="sexualOrientation" style="width: 130px" class="custom-select ml-1">
+                            <option *ngFor="let orientation of orientationList" [value]="orientation.value">
+                                {{orientation.display}}
+                            </option>
+                        </select>
+                            <input *ngIf="
+                                (member.orientation !== 'straight') && 
+                                (member.orientation !== 'bisexual') && 
+                                (member.orientation !== 'gay')" 
+                            [(ngModel)]="member.orientation" type="text" name="sexualOrientation" 
+                            class="form-control mx-2" value="{{member.orientation | titlecase}}">
                     </div>
                     
-                    <div class = "form-inline mt-1">
-                        <label for="sexualOrientation">Sexual Orientation: </label>
-                        <input [(ngModel)]="member.orientation" type="text" name="sexualOrientation" 
-                        class="form-control mx-2" value="{{member.orientation | titlecase}}">
+                    <div  class = "form-inline mt-1">
+                        <label for="pronouns">Pronouns:</label>
+                        <select [(ngModel)]="member.pronouns" name="pronouns" style="width: 130px" class="custom-select ml-1">
+                            <option *ngFor="let pronouns of pronounsList" [value]="pronouns.value">
+                                {{pronouns.display}}
+                            </option>
+                        </select>
+                            <input *ngIf="
+                                (member.pronouns !== 'he/him') && 
+                                (member.pronouns !== 'she/her') && 
+                                (member.pronouns !== 'they/them')" 
+                            [(ngModel)]="member.pronouns" type="text" name="pronouns" 
+                            class="form-control mx-2" value="{{member.pronouns | titlecase}}">
                     </div>
-                    
+
                     <div class = "form-inline mt-1">
-                        <label for="pronouns">Prounouns: </label>
-                        <input [(ngModel)]="member.pronouns" type="text" name="pronouns" 
-                        class="form-control mx-2" value="{{member.pronouns}}">
+                        <label for="relationshipStatus">Relationship Status:</label>
+                        <select [(ngModel)]="member.relationshipStatus" name="relationshipStatus" style="width: 130px" class="custom-select ml-1">
+                            <option *ngFor="let rs of relationshipStatusList" [value]="rs.value">
+                                {{rs.display}}
+                            </option>
+                        </select>
                     </div>
                     
                     <div class = "form-inline mt-3">
