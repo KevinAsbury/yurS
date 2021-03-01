@@ -1,3 +1,5 @@
+using System;
+
 namespace API.DTOs
 {
     public class LikeDto
@@ -11,5 +13,10 @@ namespace API.DTOs
         public string RelationshipStatus { get; set; }
         public string City { get; set; }
         public string Country { get; set; }
+
+        internal object toListAsync()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
