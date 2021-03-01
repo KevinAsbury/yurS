@@ -50,7 +50,7 @@ namespace API.Data
                 City = user.City,
                 Country = user.Country,
                 Id = user.Id,
-        }.toListAsync();
+            }).ToListAsync();
         }
 
         public async Task<AppUser> GetUserWithLikes(int userId)
