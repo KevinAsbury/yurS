@@ -25,7 +25,7 @@ namespace API.Data
             _context.Messages.Remove(message);
         }
 
-        public async Task<Message> GetMessage(int Id)
+        public async Task<Message> GetMessage(int id)
         {
             return await _context.Messages.FindAsync(id);
         }
