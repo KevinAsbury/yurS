@@ -5,11 +5,10 @@ import { of, pipe } from 'rxjs'
 import { map, take } from 'rxjs/operators'
 import { environment } from 'src/environments/environment'
 import { Member } from '../_models/member'
-import { PaginatedResult } from '../_models/pagination'
 import { User } from '../_models/user'
 import { UserParams } from '../_models/userParams'
 import { AccountService } from './account.service'
-import { getPaginatedResult, getPaginationHeaders } from './paginationHeler'
+import { getPaginatedResult, getPaginationHeaders } from './paginationHelper'
 
 @Injectable({
   providedIn: 'root',
