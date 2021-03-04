@@ -59,6 +59,7 @@ namespace API.Data
         {
             var messages = await _context.Messages
                 .Include(u => u.Sender).ThenInclude(p => p.Photos)
+                .Include(u => u.Recipient).ThenInclude(p => p.Photos)
                 .Where(m => m.Recipient.UserName == currentUserName
                     && m.Sender.UserName == recipientUsername
                     || m.Recipient.UserName == recipientUsername
@@ -67,7 +68,8 @@ namespace API.Data
                 .OrderBy(m => m.MessageSent)
                 .ToListAsync();
 
-            var unreadMessages = messages.Where(m => m.DateRead == null && m.Recipient.UserName == currentUserName).ToList();
+            var unreadMessages = messages.Where(m => m.DateRead == null 
+                && m.Recipient.UserName == currentUserName).ToList();
 
             if (unreadMessages.Any())
             {
