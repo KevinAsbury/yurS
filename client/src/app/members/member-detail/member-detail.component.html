@@ -35,8 +35,8 @@
         </div>
     </div>
     <div class="col-8">
-        <tabset class="member-tabset">
-            <tab heading="About">
+        <tabset class="member-tabset" #memberTabs>
+            <tab heading="About" (selectTab)="onTabActivated($event)">
                 <div>
                     <strong>Gender Identity:</strong>
                     {{member.gender | titlecase}}
@@ -65,12 +65,12 @@
                     {{member.introduction}}
                 </div>
             </tab>
-            <tab heading="Photos">
+            <tab heading="Photos" (selectTab)="onTabActivated($event)">
                 <ngx-gallery [options]="galleryOptions" [images]="galleryImages" 
                 style="display: inline-block; margin-bottom: 20px;" class="ngx-gallery"></ngx-gallery>
             </tab>
-            <tab heading="Messages">
-                <app-member-messages [username]="member.userName"></app-member-messages>
+            <tab heading="Messages" (selectTab)="onTabActivated($event)">
+                <app-member-messages [messages]="messages"></app-member-messages>
             </tab>
         </tabset>
     </div>
