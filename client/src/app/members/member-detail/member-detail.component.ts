@@ -14,8 +14,9 @@ import { Message } from 'src/app/_models/message'
   templateUrl: './member-detail.component.html',
   styleUrls: ['./member-detail.component.css'],
 })
+  
 export class MemberDetailComponent implements OnInit {
-  @ViewChild('memberTabs') memberTabs: TabsetComponent
+  @ViewChild('memberTabs', {static: true}) memberTabs: TabsetComponent
   member: Member
   galleryOptions: NgxGalleryOptions[]
   galleryImages: NgxGalleryImage[]
@@ -29,7 +30,13 @@ export class MemberDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.loadMember()
+    this.route.data.subscribe(data => {
+      this.member = data.member
+    })
+
+    this.route.queryParams.subscribe(params => {
+      params.tab ? this.selectTab(params.tab) : this.selectTab(0)
+    })
 
     this.galleryOptions = [
       {
@@ -41,6 +48,8 @@ export class MemberDetailComponent implements OnInit {
         preview: false,
       },
     ]
+
+    this.galleryImages = this.getImages()
   }
 
   /**
@@ -60,20 +69,6 @@ export class MemberDetailComponent implements OnInit {
     }
 
     return imageUrls
-  }
-
-  /**
-   * Subscribes to the member service, sets the member property, loads member's photo gallery
-   *
-   * @memberof MemberDetailComponent
-   */
-  loadMember() {
-    this.memberService
-      .getMember(this.route.snapshot.paramMap.get('username'))
-      .subscribe((member) => {
-        this.member = member
-        this.galleryImages = this.getImages()
-      })
   }
 
   loadMessages() {

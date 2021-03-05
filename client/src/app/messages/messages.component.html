@@ -42,7 +42,8 @@
         <tr *ngFor="let message of messages" 
             routerLink='{{container === "Outbox" 
             ? "/members/" + message.recipientUsername 
-            : "/members/" + message.senderUsername}}'> 
+            : "/members/" + message.senderUsername}}'
+            [queryParams]='{tab:2}'> 
             <td>
                 <div *ngIf="container === 'Outbox'">
                     <img 
