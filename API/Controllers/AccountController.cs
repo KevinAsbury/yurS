@@ -42,13 +42,8 @@ namespace API.Controllers
 
             var user = _mapper.Map<AppUser>(registerDto);
 
-            // create a new hashing algorithm
-            using var hmac = new HMACSHA512();
-
             // Create a new user, hash their password, create salt
             user.UserName = registerDto.UserName.ToLower();
-            user.PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password));
-            user.PasswordSalt = hmac.Key;
 
             // Add user to the databse
             _context.Users.Add(user);
@@ -83,16 +78,6 @@ namespace API.Controllers
 
             // Return unauthorized if username is not located
             if (user == null) return Unauthorized("Invalid username");
-
-            // compare the password hashes
-            using var hmac = new HMACSHA512(user.PasswordSalt);
-            var computeHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(loginDto.Password));
-
-            for (var i = 0; i < computeHash.Length; i++)
-            {
-                if (computeHash[i] != user.PasswordHash[i])
-                    return Unauthorized("Invalid password");
-            }
 
             // Return user name and jwt token on success
             return new UserDto
