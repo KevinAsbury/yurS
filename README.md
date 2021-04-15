@@ -2,6 +2,8 @@
 
 yurS is an ASP.Net and Angular library for dealing with proper capitalization and word pluralization, no wait... I mean, it is a library for dealing with lonliness aka a dating app.
 
+![yurS](yurS SS.png)
+
 ## Installation
 
 ### API
