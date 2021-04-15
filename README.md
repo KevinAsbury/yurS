@@ -33,6 +33,33 @@ Cut and paste this in to the file:
 ```
 If you haven't done so then head to [Cloudinary](https://cloudinary.com) and set up a free-tier account (no credit card required). After verifying your email address and logging in you will see your CloudName, ApiKey, and ApiSecret on the login panel. Cut and paste this information into the appsettings.json and save the file. The app uses Cloudinary to store uploaded images.
 
+Running the API requires .Net Core 5.0 installed along with the Entity Framework.
+
+Visit [How to Install .Net](https://docs.microsoft.com/en-us/dotnet/core/install/) and follow the appropriate instructions. You can install the Runtime instead of the SDK if you only plan on running the app. 
+
+Check your dotnet version:
+```bash
+dotnet --version
+```
+
+Install the Entity Framework:
+```bash
+dotnet new tool-manifest
+dotnet tool install dotnet-ef
+```
+
+You should now be greated by the .Net Ef unicorn when you type:
+```bash
+dotnet ef
+```
+
+Now we are ready to create the database, run:
+```bash
+dotnet ef database update
+```
+
+If everything succeeded then you will have a yurs.db file located in the API directory.
+
 ---
 ### Angular Client
 First Angular needs SSL certificates. You will need to create a folder named ssl:
@@ -105,6 +132,12 @@ Now you should have all your SSL files generated. Return back the the client dir
 cd ..
 npm install
 ```
+
+Next we need to install Angular:
+```bash
+npm install -g @angular/cli
+```
+
 ---
 ## Usage
 Use dotnet run to start the API:
