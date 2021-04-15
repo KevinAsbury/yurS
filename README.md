@@ -2,7 +2,7 @@
 
 yurS is an example dating app written in ASP.Net and Angular.
 
-![yurS Screenshot](https://github.com/KevinAsbury/yurS/blob/development/yurS_SS.png?raw=true)
+![yurS Screenshot](https://github.com/KevinAsbury/yurS/blob/main/yurS_SS.png?raw=true)
 
 ## Installation
 
