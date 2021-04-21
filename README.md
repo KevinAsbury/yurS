@@ -52,11 +52,12 @@ You should now be greated by the .Net Ef unicorn when you type:
 ```bash
 dotnet ef
 ```
-
+<!--
 Now we are ready to create the database, run:
 ```bash
 dotnet ef database update
 ```
+-->
 
 If everything succeeded then you will have a yurs.db file located in the API directory.
 
